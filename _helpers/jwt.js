@@ -14,6 +14,7 @@ function jwt() {
             '/simplify/simplify',
             '/simplify/cardToken',
             '/simplify/addCard',
+            '/simplify/transaction',
 
 	    '/'
         ]
