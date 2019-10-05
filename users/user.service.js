@@ -99,6 +99,10 @@ async function create(userParam) {
               console.log("Success Response: " + JSON.stringify(data));
           });
 
+               if (userParam.password) {
+                     user.hash = bcrypt.hashSync(userParam.password, 10);
+                   }
+
 
           await user.save();
          // gateway.customer.create({
