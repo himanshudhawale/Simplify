@@ -39,7 +39,7 @@ router.post('/cardToken', async (req,res)=>{
 router.post('/addCard', async (req,res)=>{
 
     client.customer.update({
-        id: req.bod.customerID,
+        id: req.body.customerID,
         email: req.body.email,
         name: req.body.firstName + " " + req.body.lastName,
         card : {
