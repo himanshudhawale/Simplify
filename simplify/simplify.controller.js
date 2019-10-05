@@ -12,7 +12,7 @@ router.get('/simplify', function(req, res) {
 });
 
 
-router.post('/cardToken',async (req,res)=>{
+router.post('/cardToken', async (req,res)=>{
 
     client.cardtoken.create({
       card : {
@@ -34,3 +34,6 @@ router.post('/cardToken',async (req,res)=>{
       console.log("Success Response: " + JSON.stringify(data));
     });
 });
+
+
+module.exports = router;
