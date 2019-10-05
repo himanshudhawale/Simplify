@@ -39,8 +39,7 @@ router.post('/cardToken', async (req,res)=>{
 router.post('/addCard', async (req,res)=>{
 
     client.customer.update({
-        id: req.body.customerID,
-        email: req.body.email,
+        id: "Kkb84E7oj",
         card : {
            id : "",
            expMonth : "5",
@@ -57,6 +56,7 @@ router.post('/addCard', async (req,res)=>{
             return;
         }
         console.log("Success Response: " + JSON.stringify(data));
+        res.send(data);
     });
 
 });
