@@ -4,16 +4,18 @@ var Simplify = require("simplify-commerce"),
         privateKey: 'REMOVED'
     });
 
-client.customer.create({
-    email : "customer@mastercard.com",
-    name : "Customer Customer",
+client.customer.update({
+    id: "4TR6Bc",
+    email : "customer111@mastercard.com",
+    name : "Customer Cust",
     card : {
-       expMonth : "11",
+       id : "",
+       expMonth : "5",
        expYear : "35",
-       cvc : "123",
-       number : "5555555555554444"
+       cvc : "456",
+       number : "5120790000000083"
     },
-    reference : "Ref1"
+    reference : "Ref11"
 }, function(errData, data){
 
     if(errData){
