@@ -42,13 +42,14 @@ router.post('/addCard', async (req,res)=>{
         id: req.body.customerID,
         email: req.body.email,
         name: req.body.firstName + " " + req.body.lastName,
-        card : {
-           id : "",
-           expMonth : "5",
-           expYear : "35",
-           cvc : "456",
-           number : "5120790000000083"
-        },
+        card: req.body.card,
+        // card : {
+        //    id : "",
+        //    expMonth : "5",
+        //    expYear : "35",
+        //    cvc : "456",
+        //    number : "5120790000000083"
+        // },
         reference : "Ref1"
     }, function(errData, data){
 
