@@ -40,6 +40,7 @@ router.post('/addCard', async (req,res)=>{
 
     client.customer.update({
         id: req.body.customerID,
+        email: req.body.email,
         card : {
            id : "",
            expMonth : "5",
