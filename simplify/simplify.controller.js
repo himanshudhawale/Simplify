@@ -15,14 +15,15 @@ router.get('/simplify', function(req, res) {
 router.post('/cardToken', async (req,res)=>{
 
     client.cardtoken.create({
-      card : {
-         addressState : "MO",
-         expMonth : "11",
-         expYear : "35",
-         addressCity : "OFallon",
-         cvc : "123",
-         number : "5105105105105100"
-      }
+      card : req.body.card
+      // {
+      //    addressState : "MO",
+      //    expMonth : "11",
+      //    expYear : "35",
+      //    addressCity : "OFallon",
+      //    cvc : "123",
+      //    number : "5105105105105100"
+      // }
     }, function(errData, data){
 
       if(errData){
@@ -57,7 +58,8 @@ router.post('/addCard', async (req,res)=>{
             console.error("Error Message: " + errData.data.error.message);
             // handle the error
             return;
-        }
+        }   
+
         console.log("Success Response: " + JSON.stringify(data));
         res.send(data);
     });
@@ -66,26 +68,27 @@ router.post('/addCard', async (req,res)=>{
 
 router.post('/transaction', async (req,res)=>{
 
-      client.invoice.create({
-          items : [
-             {
-                amount : "100"
-             }
-          ],
-          email : req.body.email,
-          name : req.body.firstName + " " +req.body.lastName,
-          reference : "Ref1"
-      }, function(errData, data){
+        client.payment.create({
+              amount : "1000",
+              description : "payment description",
+              invoice : "[INVOICE ID]",
+              card : {
+                 expMonth : "8",
+                 expYear : "99",
+                 cvc : "123",
+                 number : "5555555555554444"
+              }
+        }, function(errData, data){
 
-          if(errData){
-              console.error("Error Message: " + errData.data.error.message);
-              // handle the error
-              return;
-          }
+        if(errData){
+            console.error("Error Message: " + errData.data.error.message);
+            // handle the error
+            return;
+        }
 
-          console.log("Success Response: " + JSON.stringify(data));
-          res.send(data);
-      });
+        console.log("Payment Status: " + data.paymentStatus);
+        res.send(data);
+        });
 });
 
 
