@@ -39,7 +39,7 @@ router.post('/cardToken', async (req,res)=>{
 router.post('/addCard', async (req,res)=>{
 
     client.customer.update({
-        id: "req.body.customerID",
+        id: req.body.customerID,
         card : {
            id : "",
            expMonth : "5",
