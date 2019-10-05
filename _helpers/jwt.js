@@ -13,6 +13,7 @@ function jwt() {
             '/users/register',
             '/simplify/simplify',
             '/simplify/cardToken',
+            '/simplify/addCard',
 
 	    '/'
         ]
