@@ -82,16 +82,16 @@ async function create(userParam) {
 
 
           client.customer.create({
-              email : "customer@mastercard.com",
-              name : "Customer Customer",
-              card : {
-                 expMonth : "11",
-                 expYear : "35",
-                 cvc : "123",
-                 number : "5555555555554444"
-              },
+              email : userParam.email,
+              name : userParam.firstName + " " + userParam.lastName,
+              // card : {
+              //    expMonth : "11",
+              //    expYear : "35",
+              //    cvc : "123",
+              //    number : "5555555555554444"
+              // },
               reference : "Ref1"
-          }).then(function(errData, data){
+          }, function(errData, data){
               if(errData){
                   console.error("Error Message: " + errData.data.error.message);
                   return;
