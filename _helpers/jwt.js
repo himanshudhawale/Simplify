@@ -11,12 +11,8 @@ function jwt() {
             // public routes that don't require authentication
             '/users/authenticate',
             '/users/register',
-            '/brain/braintree',
-            '/brain/token',
-            '/brain/create_customer',
-            '/brain/sandbox',
-            '/simplify',
-            '/cardToken',
+            '/simplify/simplify',
+            'simplify/cardToken',
 
 	    '/'
         ]
