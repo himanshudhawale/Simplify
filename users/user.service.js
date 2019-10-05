@@ -97,14 +97,20 @@ async function create(userParam) {
                   return;
               }
               console.log("Success Response: " + JSON.stringify(data));
+              user.customerID = data.id;
+              if (userParam.password) {
+                    user.hash = bcrypt.hashSync(userParam.password, 10);
+              }
+              user.save(function(err, res){
+                    if (err){throw err;}
+                    console.log('user is: ', res)
+              });
+
+
           });
 
-               if (userParam.password) {
-                     user.hash = bcrypt.hashSync(userParam.password, 10);
-                   }
 
 
-          await user.save();
          // gateway.customer.create({
          //        firstName: user.firstName,
          //        lastName: user.lastName,
