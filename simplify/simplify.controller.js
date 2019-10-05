@@ -39,7 +39,7 @@ router.post('/cardToken', async (req,res)=>{
 router.post('/addCard', async (req,res)=>{
 
     client.customer.update({
-        id: req.body.customerID,
+        id: "req.body.customerID",
         card : {
            id : "",
            expMonth : "5",
@@ -47,7 +47,7 @@ router.post('/addCard', async (req,res)=>{
            cvc : "456",
            number : "5120790000000083"
         },
-        reference : "Ref11"
+        reference : "Ref1"
     }, function(errData, data){
 
         if(errData){
@@ -55,7 +55,6 @@ router.post('/addCard', async (req,res)=>{
             // handle the error
             return;
         }
-
         console.log("Success Response: " + JSON.stringify(data));
     });
 
