@@ -32,6 +32,7 @@ router.post('/cardToken', async (req,res)=>{
       }
 
       console.log("Success Response: " + JSON.stringify(data));
+      res.send(data);
     });
 });
 
