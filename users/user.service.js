@@ -4,13 +4,11 @@ const bcrypt = require('bcryptjs');
 const db = require('_helpers/db');
 const User = db.User;
 const braintree = require('braintree');
-var gateway = braintree.connect({
-  environment: braintree.Environment.Sandbox,
-  // Use your own credentials from the sandbox Control Panel here
-  merchantId: "np2ddp8875qm3bst",
-  publicKey:  "m329x6x47chz7rnd",
-  privateKey: "3bdf29a13535f5715e2491a0620f4b30"
-});
+var Simplify = require("simplify-commerce"),
+    client = Simplify.getClient({
+        publicKey: 'sbpb_OGI3MjliOTUtYWMyZS00ZTE4LWFmYTgtNTdkZDQ1NTBhZGFm',
+        privateKey: '6IpmiveAFIhKuVmp6CONqGsVnJKfuPc4C2q1endRa2l5YFFQL0ODSXAOkNtXTToq'
+    });
 
 
 module.exports = {
@@ -56,32 +54,53 @@ async function create(userParam) {
          const user =  new User(userParam);
 
 
-         gateway.customer.create({
-                  firstName: user.firstName,
-                  lastName: user.lastName,
-                  email: user.email,
-                  phone: "8080808080"
-          }).then(function (result) {
-            if (result.success) {
-              console.log('Customer ID: ' + result.customer.id);
+         // gateway.customer.create({
+         //          firstName: user.firstName,
+         //          lastName: user.lastName,
+         //          email: user.email,
+         //          phone: "8080808080"
+         //  }).then(function (result) {
+         //    if (result.success) {
+         //      console.log('Customer ID: ' + result.customer.id);
+         //
+         //      user.customerID = result.customer.id;
+         //      if (userParam.password) {
+         //            user.hash = bcrypt.hashSync(userParam.password, 10);
+         //          }
+         //
+         //      user.save(function(err, res){
+         //                if (err){throw err;}
+         //                 console.log('user is: ', res)
+         //               });
+         //
+         //    } else {
+         //      console.error(result.message);
+         //    }
+         //  }).catch(function (err) {
+         //    console.error(err);
+         //  });
 
-              user.customerID = result.customer.id;
-              if (userParam.password) {
-                    user.hash = bcrypt.hashSync(userParam.password, 10);
-                  }
 
-              user.save(function(err, res){
-                        if (err){throw err;}
-                         console.log('user is: ', res)
-                       });
-
-            } else {
-              console.error(result.message);
-            }
-          }).catch(function (err) {
-            console.error(err);
+          client.customer.create({
+              email : "customer@mastercard.com",
+              name : "Customer Customer",
+              card : {
+                 expMonth : "11",
+                 expYear : "35",
+                 cvc : "123",
+                 number : "5555555555554444"
+              },
+              reference : "Ref1"
+          }).then(function(errData, data){
+              if(errData){
+                  console.error("Error Message: " + errData.data.error.message);
+                  return;
+              }
+              console.log("Success Response: " + JSON.stringify(data));
           });
 
+
+          await user.save();
          // gateway.customer.create({
          //        firstName: user.firstName,
          //        lastName: user.lastName,
