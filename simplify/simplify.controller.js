@@ -64,5 +64,29 @@ router.post('/addCard', async (req,res)=>{
 
 });
 
+router.post('/transaction', async (req,res)=>{
+
+      client.invoice.create({
+          items : [
+             {
+                amount : "100"
+             }
+          ],
+          email : req.body.email,
+          name : req.body.firstName + " " +req.body.lastName,
+          reference : "Ref1"
+      }, function(errData, data){
+
+          if(errData){
+              console.error("Error Message: " + errData.data.error.message);
+              // handle the error
+              return;
+          }
+
+          console.log("Success Response: " + JSON.stringify(data));
+          res.send(data);
+      });
+});
+
 
 module.exports = router;
