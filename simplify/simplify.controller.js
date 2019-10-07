@@ -68,25 +68,48 @@ router.post('/addCard', async (req,res)=>{
 
 router.post('/transaction', async (req,res)=>{
 
-        client.payment.create({
-              amount : req.body.amount,
-              card : {
-                 expMonth : "8",
-                 expYear : "99",
-                 cvc : "123",
-                 number : "5555555555554444"
+
+  client.customer.update({
+      id: user.customerID,
+      email : user.email,
+      name : user.firstNamev + " " + user.lastName,
+      card: req.body.card,
+      // card : {
+      //    id : "",
+      //    expMonth : "5",
+      //    expYear : "35",
+      //    cvc : "456",
+      //    number : "5120790000000083"
+      // },
+      reference : "Ref1"
+  }, function(errData, data){
+
+      if(errData){
+          console.error("Error Message: " + errData.data.error.message);
+          // handle the error
+          return;
+      }
+
+      // console.log("Success Response: " + JSON.stringify(data));
+
+
+              client.payment.create({
+                    amount : req.body.amount,
+                    card : req.body.card
+              }, function(errData, data){
+
+              if(errData){
+                  console.error("Error Message: " + errData.data.error.message);
+                  // handle the error
+                  return;
               }
-        }, function(errData, data){
 
-        if(errData){
-            console.error("Error Message: " + errData.data.error.message);
-            // handle the error
-            return;
-        }
+              console.log("Payment Status: " + data.paymentStatus);
+              res.send(data);
+              });
+  });
 
-        console.log("Payment Status: " + data.paymentStatus);
-        res.send(data);
-        });
+
 });
 
 
