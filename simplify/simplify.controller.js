@@ -70,9 +70,9 @@ router.post('/transaction', async (req,res)=>{
 
 
   client.customer.update({
-      id: user.customerID,
-      email : user.email,
-      name : user.firstNamev + " " + user.lastName,
+      id: req.body.customerID,
+      email : req.body.email,
+      name : req.body.firstNamev + " " + req.body.lastName,
       card: req.body.card,
       // card : {
       //    id : "",
@@ -94,6 +94,7 @@ router.post('/transaction', async (req,res)=>{
 
 
               client.payment.create({
+                    customer: req.body.customerID,
                     amount : req.body.amount,
                     card : req.body.card
               }, function(errData, data){
