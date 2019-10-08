@@ -72,7 +72,7 @@ router.post('/transaction', async (req,res)=>{
   client.customer.update({
       id: req.body.customerID,
       email : req.body.email,
-      name : req.body.firstNamev + " " + req.body.lastName,
+      name : req.body.firstName + " " + req.body.lastName,
       card: req.body.card,
       // card : {
       //    id : "",
