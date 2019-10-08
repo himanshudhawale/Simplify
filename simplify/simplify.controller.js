@@ -17,6 +17,7 @@ router.post('/simplify', function(req, res) {
     }
 
     console.log("Success Response: " + JSON.stringify(data));
+    res.send(data);
 });
 
 });
