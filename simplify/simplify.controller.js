@@ -81,6 +81,7 @@ router.post('/transaction', async (req,res)=>{
         }
 
         console.log("Success Response: " + JSON.stringify(data));
+        console.log("Success Response: " + JSON.stringify(data.id));
         //Success Response
 
         client.payment.create({
