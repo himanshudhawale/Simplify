@@ -7,9 +7,9 @@ client = Simplify.getClient({
 });
 
 
-router.get('/simplify', function(req, res) {
+router.post('/simplify', function(req, res) {
   client.customer.find(req.body.customerID, function(errData, data){
- 
+
     if(errData){
         console.error("Error Message: " + errData.data.error.message);
         // handle the error
