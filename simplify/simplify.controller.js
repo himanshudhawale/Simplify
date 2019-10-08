@@ -88,7 +88,7 @@ router.post('/transaction', async (req,res)=>{
               amount : req.body.amount,
               token : data.id,
               currency : "USD",
-              customer : req.body.card.customer
+              customer : req.body.customerID
           }, function(errData, data){
 
               if(errData){
