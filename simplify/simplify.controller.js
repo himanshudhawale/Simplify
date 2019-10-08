@@ -80,7 +80,7 @@ router.post('/transaction', async (req,res)=>{
             return;
         }
 
-        console.log("Success Response: " + JSON.stringify(data));
+        // console.log("Success Response: " + JSON.stringify(data));
         // console.log("Success Response: " + JSON.stringify(data.id));
         //Success Response
 
