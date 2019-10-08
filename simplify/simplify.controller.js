@@ -70,8 +70,8 @@ router.post('/transaction', async (req,res)=>{
 
 
       client.cardtoken.create({
-        card : req.body.card,
-        email : req.body.email
+        card : req.body.card
+        // email : req.body.email
     }, function(errData, data){
 
         if(errData){
