@@ -69,25 +69,37 @@ router.post('/addCard', async (req,res)=>{
 router.post('/transaction', async (req,res)=>{
 
 
-      // console.log("Success Response: " + JSON.stringify(data));
+      client.cardtoken.create({
+        card : req.body.card,
+        email : req.body.email
+    }, function(errData, data){
 
+        if(errData){
+            console.error("Error Message: " + errData.data.error.message);
+            // handle the error
+            return;
+        }
 
-              client.payment.create({
-                    customer: req.body.customerID,
-                    amount : req.body.amount,
-                    card : req.body.card
-              }, function(errData, data){
+        console.log("Success Response: " + JSON.stringify(data));
+        //Success Response
+
+        client.payment.create({
+              amount : req.body.amount,
+              token : data.id,
+              currency : "USD"
+          }, function(errData, data){
 
               if(errData){
                   console.error("Error Message: " + errData.data.error.message);
-                  // handle the error
                   return;
               }
-
               console.log("Payment Status: " + data.paymentStatus);
               res.send(data);
-              });
-  });
+            });
+
+    });
+
+});
 
 
 
