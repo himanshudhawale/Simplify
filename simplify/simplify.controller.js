@@ -7,7 +7,7 @@ client = Simplify.getClient({
 });
 
 
-router.post('/simplify', function(req, res) {
+router.post('/recent', function(req, res) {
   client.customer.find(req.body.customerID, function(errData, data){
 
     if(errData){
