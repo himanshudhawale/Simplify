@@ -8,7 +8,17 @@ client = Simplify.getClient({
 
 
 router.get('/simplify', function(req, res) {
-  res.send('Blah blah blah');
+  client.customer.find(req.body.customerID, function(errData, data){
+ 
+    if(errData){
+        console.error("Error Message: " + errData.data.error.message);
+        // handle the error
+        return;
+    }
+
+    console.log("Success Response: " + JSON.stringify(data));
+});
+
 });
 
 
