@@ -86,7 +86,8 @@ router.post('/transaction', async (req,res)=>{
         client.payment.create({
               amount : req.body.amount,
               token : data.id,
-              currency : "USD"
+              currency : "USD",
+              customer : req.body.card.customer
           }, function(errData, data){
 
               if(errData){
