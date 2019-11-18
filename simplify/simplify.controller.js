@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 var Simplify = require("simplify-commerce"),
 client = Simplify.getClient({
-    publicKey: 'sbpb_OGI3MjliOTUtYWMyZS00ZTE4LWFmYTgtNTdkZDQ1NTBhZGFm',
-    privateKey: '6IpmiveAFIhKuVmp6CONqGsVnJKfuPc4C2q1endRa2l5YFFQL0ODSXAOkNtXTToq'
+    publicKey: '',
+    privateKey: ''
 });
 
 
