@@ -1,7 +1,7 @@
 var Simplify = require("simplify-commerce"),
     client = Simplify.getClient({
-        publicKey: 'REMOVED',
-        privateKey: 'REMOVED'
+        publicKey: '',
+        privateKey: ''
     });
 
 client.customer.find("4TR6Bc", function(errData, data){
